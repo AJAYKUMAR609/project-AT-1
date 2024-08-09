@@ -26,7 +26,6 @@ class TestLogin:
     employee1 = "vijay"
 
 
-
     @pytest.fixture()
     def setup_method(self):
         self.driver = webdriver.Chrome()
@@ -40,16 +39,19 @@ class TestLogin:
         yield
         self.driver.quit()
 
+    # Test Successful Login Functionality
     def test_successful_login(self,setup_method):
         self.lp.enter_username(self.username)
         self.lp.enter_password(self.password)
         self.lp.click_login_button()
 
+    # Test un-Successful Login Functionality
     def test_failed_login(self,setup_method):
         self.lf.enter_username(self.username)
         self.lf.enter_password(self.password1)
         self.lf.click_login_button()
 
+    # Test for adding new employee in portal
     def test_add_employee(self,setup_method):
         self.ae.enter_username(self.username)
         self.ae.enter_password(self.password)
@@ -69,6 +71,7 @@ class TestLogin:
         self.ae.select_blood_type()
         self.ae.click_final_save()
 
+    # Test for updating  employee in portal
     def test_update_employee(self,setup_method):
         self.tu.enter_username(self.username)
         self.tu.enter_password(self.password)
@@ -78,7 +81,9 @@ class TestLogin:
         self.tu.click_search()
         self.tu.click_action_button()
         self.tu.click_license(self.license_number1)
+        self.tu.click_save()
 
+    # Test for deleting employee in portal
     def test_delete_employee(self,setup_method):
         self.td.enter_username(self.username)
         self.td.enter_password(self.password)
